@@ -1,0 +1,8 @@
+E:\Actual Projects\GoDot\2D Terrain Generation\.mono\temp\bin\Debug\2D Terrain Generation.dll
+E:\Actual Projects\GoDot\2D Terrain Generation\.mono\temp\bin\Debug\2D Terrain Generation.pdb
+E:\Actual Projects\GoDot\2D Terrain Generation\.mono\temp\obj\Debug\2D Terrain Generation.csprojAssemblyReference.cache
+E:\Actual Projects\GoDot\2D Terrain Generation\.mono\temp\obj\Debug\2D Terrain Generation.AssemblyInfoInputs.cache
+E:\Actual Projects\GoDot\2D Terrain Generation\.mono\temp\obj\Debug\2D Terrain Generation.AssemblyInfo.cs
+E:\Actual Projects\GoDot\2D Terrain Generation\.mono\temp\obj\Debug\2D Terrain Generation.csproj.CoreCompileInputs.cache
+E:\Actual Projects\GoDot\2D Terrain Generation\.mono\temp\obj\Debug\2D Terrain Generation.dll
+E:\Actual Projects\GoDot\2D Terrain Generation\.mono\temp\obj\Debug\2D Terrain Generation.pdb

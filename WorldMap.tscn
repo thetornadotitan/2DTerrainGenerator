@@ -1,0 +1,1638 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://WorldMapTexture.tres" type="Texture" id=1]
+[ext_resource path="res://MapInputHandler.cs" type="Script" id=2]
+[ext_resource path="res://Splash.png" type="Texture" id=3]
+[ext_resource path="res://PixelFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://WorldGenController.cs" type="Script" id=5]
+
+[sub_resource type="TileSet" id=1]
+
+[node name="WorldMap" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="WorldMapGrid" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
+format = 1
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Node"]
+position = Vector2( 640, 360 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="SplashScreen" type="TextureRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadingScreen" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.72549 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/LoadingScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="UI/LoadingScreen/CenterContainer"]
+margin_left = 559.0
+margin_top = 346.0
+margin_right = 721.0
+margin_bottom = 373.0
+custom_fonts/font = ExtResource( 4 )
+text = "Loading..."
+align = 1
+uppercase = true
+
+[node name="BtnContainer" type="HBoxContainer" parent="UI"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = -60.0
+margin_right = -5.0
+margin_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RegenerateBtn" type="Button" parent="UI/BtnContainer"]
+margin_right = 420.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Regenerate"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExportBtn" type="Button" parent="UI/BtnContainer"]
+margin_left = 424.0
+margin_right = 845.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Export"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsBtn" type="Button" parent="UI/BtnContainer"]
+margin_left = 849.0
+margin_right = 1270.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsMenu" type="ColorRect" parent="UI"]
+visible = false
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0.12549, 0.141176, 0.192157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsMenuContainer" type="MarginContainer" parent="UI/SettingsMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSplitContainer" type="VSplitContainer" parent="UI/SettingsMenu/SettingsMenuContainer"]
+margin_right = 1250.0
+margin_bottom = 690.0
+
+[node name="Label" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer"]
+margin_right = 1250.0
+margin_bottom = 27.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 4 )
+text = "Settings (ESC to close)"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer"]
+margin_top = 39.0
+margin_right = 1250.0
+margin_bottom = 690.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+scroll_vertical = 684
+
+[node name="SettingsSplitter" type="HSplitContainer" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer"]
+margin_top = -684.0
+margin_right = 1250.0
+margin_bottom = 651.0
+size_flags_horizontal = 3
+
+[node name="SettingsContainer" type="GridContainer" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter"]
+margin_right = 1250.0
+margin_bottom = 1335.0
+columns = 3
+
+[node name="HeadLeft1" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_right = 429.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 4 )
+align = 1
+valign = 1
+
+[node name="HeadMid1" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_right = 833.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 4 )
+text = "Cutoffs"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="HeadRight1" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_right = 1237.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 4 )
+
+[node name="Setting1" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 31.0
+margin_right = 429.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Deep Sea"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value1" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 31.0
+margin_right = 833.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="HSlider" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 31.0
+margin_right = 1237.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="Setting2" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 62.0
+margin_right = 429.0
+margin_bottom = 89.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "sea"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value2" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 62.0
+margin_right = 833.0
+margin_bottom = 89.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="HSlider2" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 62.0
+margin_right = 1237.0
+margin_bottom = 89.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="Setting3" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 93.0
+margin_right = 429.0
+margin_bottom = 120.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Beach"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value3" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 93.0
+margin_right = 833.0
+margin_bottom = 120.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="HSlider3" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 93.0
+margin_right = 1237.0
+margin_bottom = 120.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="Setting4" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 124.0
+margin_right = 429.0
+margin_bottom = 151.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Ice Beach"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value4" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 124.0
+margin_right = 833.0
+margin_bottom = 151.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider4" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 124.0
+margin_right = 1237.0
+margin_bottom = 151.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="Setting5" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 155.0
+margin_right = 429.0
+margin_bottom = 182.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "land"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value5" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 155.0
+margin_right = 833.0
+margin_bottom = 182.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider5" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 155.0
+margin_right = 1237.0
+margin_bottom = 182.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="Setting6" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 186.0
+margin_right = 429.0
+margin_bottom = 213.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "desert"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value6" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 186.0
+margin_right = 833.0
+margin_bottom = 213.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider6" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 186.0
+margin_right = 1237.0
+margin_bottom = 213.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="Setting7" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 217.0
+margin_right = 429.0
+margin_bottom = 244.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "ice Land"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value7" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 217.0
+margin_right = 833.0
+margin_bottom = 244.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider7" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 217.0
+margin_right = 1237.0
+margin_bottom = 244.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="Setting8" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 248.0
+margin_right = 429.0
+margin_bottom = 275.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "mountain"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value8" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 248.0
+margin_right = 833.0
+margin_bottom = 275.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider8" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 248.0
+margin_right = 1237.0
+margin_bottom = 275.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="Setting9" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 279.0
+margin_right = 429.0
+margin_bottom = 306.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "snow"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value9" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 279.0
+margin_right = 833.0
+margin_bottom = 306.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider9" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 279.0
+margin_right = 1237.0
+margin_bottom = 306.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="Setting10" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 310.0
+margin_right = 429.0
+margin_bottom = 337.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "forest"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value10" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 310.0
+margin_right = 833.0
+margin_bottom = 337.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider10" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 310.0
+margin_right = 1237.0
+margin_bottom = 337.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="Setting11" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 341.0
+margin_right = 429.0
+margin_bottom = 368.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "desert Temp."
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value11" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 341.0
+margin_right = 833.0
+margin_bottom = 368.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider11" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 341.0
+margin_right = 1237.0
+margin_bottom = 368.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="Setting12" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 372.0
+margin_right = 429.0
+margin_bottom = 399.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "ice Temp."
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value12" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 372.0
+margin_right = 833.0
+margin_bottom = 399.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider12" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 372.0
+margin_right = 1237.0
+margin_bottom = 399.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="HeadLeft2" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 403.0
+margin_right = 429.0
+margin_bottom = 430.0
+custom_fonts/font = ExtResource( 4 )
+align = 1
+valign = 1
+
+[node name="HeadMid2" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 403.0
+margin_right = 833.0
+margin_bottom = 430.0
+custom_fonts/font = ExtResource( 4 )
+text = "Thresholds"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="HeadRight2" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 403.0
+margin_right = 1237.0
+margin_bottom = 430.0
+custom_fonts/font = ExtResource( 4 )
+
+[node name="Setting13" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 434.0
+margin_right = 429.0
+margin_bottom = 461.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "forest"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value13" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 434.0
+margin_right = 833.0
+margin_bottom = 461.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider13" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 434.0
+margin_right = 1237.0
+margin_bottom = 461.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="Setting14" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 465.0
+margin_right = 429.0
+margin_bottom = 492.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "ice Beach"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value14" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 465.0
+margin_right = 833.0
+margin_bottom = 492.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider14" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 465.0
+margin_right = 1237.0
+margin_bottom = 492.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="Setting15" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 496.0
+margin_right = 429.0
+margin_bottom = 523.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "desert Land"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value15" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 496.0
+margin_right = 833.0
+margin_bottom = 523.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider15" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 496.0
+margin_right = 1237.0
+margin_bottom = 523.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="Setting16" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 527.0
+margin_right = 429.0
+margin_bottom = 554.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "ice Land"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value16" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 527.0
+margin_right = 833.0
+margin_bottom = 554.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider16" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 527.0
+margin_right = 1237.0
+margin_bottom = 554.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="HeadLeft3" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 558.0
+margin_right = 429.0
+margin_bottom = 585.0
+custom_fonts/font = ExtResource( 4 )
+align = 1
+valign = 1
+
+[node name="HeadMid3" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 558.0
+margin_right = 833.0
+margin_bottom = 585.0
+custom_fonts/font = ExtResource( 4 )
+text = "Influences / Limits"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="HeadRight3" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 558.0
+margin_right = 1237.0
+margin_bottom = 585.0
+custom_fonts/font = ExtResource( 4 )
+
+[node name="Setting17" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 589.0
+margin_right = 429.0
+margin_bottom = 616.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Noise Divisor on temp."
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value17" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 589.0
+margin_right = 833.0
+margin_bottom = 616.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider17" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 589.0
+margin_right = 1237.0
+margin_bottom = 616.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 32.0
+step = 0.1
+ticks_on_borders = true
+
+[node name="Setting18" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 620.0
+margin_right = 429.0
+margin_bottom = 647.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "River Count"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value18" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 620.0
+margin_right = 833.0
+margin_bottom = 647.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider18" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 620.0
+margin_right = 1237.0
+margin_bottom = 647.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+rounded = true
+ticks_on_borders = true
+
+[node name="Setting19" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 651.0
+margin_right = 429.0
+margin_bottom = 678.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "River Chance in Desert"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value19" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 651.0
+margin_right = 833.0
+margin_bottom = 678.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider19" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 651.0
+margin_right = 1237.0
+margin_bottom = 678.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+ticks_on_borders = true
+
+[node name="Setting20" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 682.0
+margin_right = 429.0
+margin_bottom = 709.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "River Chance in Ice"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value20" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 682.0
+margin_right = 833.0
+margin_bottom = 709.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider20" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 682.0
+margin_right = 1237.0
+margin_bottom = 709.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+ticks_on_borders = true
+
+[node name="HeadLeft4" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 713.0
+margin_right = 429.0
+margin_bottom = 740.0
+custom_fonts/font = ExtResource( 4 )
+align = 1
+valign = 1
+
+[node name="HeadMid4" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 713.0
+margin_right = 833.0
+margin_bottom = 740.0
+custom_fonts/font = ExtResource( 4 )
+text = "Noise"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="HeadRight4" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 713.0
+margin_right = 1237.0
+margin_bottom = 740.0
+custom_fonts/font = ExtResource( 4 )
+
+[node name="Setting21" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 744.0
+margin_right = 429.0
+margin_bottom = 771.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "octaves"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value21" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 744.0
+margin_right = 833.0
+margin_bottom = 771.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider21" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 744.0
+margin_right = 1237.0
+margin_bottom = 771.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 10.0
+rounded = true
+ticks_on_borders = true
+
+[node name="Setting22" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 775.0
+margin_right = 429.0
+margin_bottom = 802.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Period"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value22" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 775.0
+margin_right = 833.0
+margin_bottom = 802.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider22" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 775.0
+margin_right = 1237.0
+margin_bottom = 802.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 360.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="Setting23" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 806.0
+margin_right = 429.0
+margin_bottom = 833.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "persistance"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value23" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 806.0
+margin_right = 833.0
+margin_bottom = 833.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider23" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 806.0
+margin_right = 1237.0
+margin_bottom = 833.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+ticks_on_borders = true
+
+[node name="Setting24" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 837.0
+margin_right = 429.0
+margin_bottom = 864.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Lacunarity"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value24" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 837.0
+margin_right = 833.0
+margin_bottom = 864.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider24" type="HSlider" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 837.0
+margin_right = 1237.0
+margin_bottom = 864.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.1
+max_value = 5.0
+step = 0.001
+value = 1.1
+ticks_on_borders = true
+
+[node name="HeadLeft6" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 868.0
+margin_right = 429.0
+margin_bottom = 895.0
+custom_fonts/font = ExtResource( 4 )
+align = 1
+valign = 1
+
+[node name="HeadMid6" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 868.0
+margin_right = 833.0
+margin_bottom = 895.0
+custom_fonts/font = ExtResource( 4 )
+text = "RNG"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="HeadRight6" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 868.0
+margin_right = 1237.0
+margin_bottom = 895.0
+custom_fonts/font = ExtResource( 4 )
+
+[node name="Setting25" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 899.0
+margin_right = 429.0
+margin_bottom = 932.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Seed"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Value25" type="TextEdit" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 899.0
+margin_right = 833.0
+margin_bottom = 932.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "(current seed)"
+
+[node name="ButtonContainer" type="HSplitContainer" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 899.0
+margin_right = 1237.0
+margin_bottom = 932.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button1" type="Button" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer/ButtonContainer"]
+margin_right = 193.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "SET SEED"
+
+[node name="Button2" type="Button" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer/ButtonContainer"]
+margin_left = 205.0
+margin_right = 400.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "RANDOMIZE"
+
+[node name="HeadLeft5" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 936.0
+margin_right = 429.0
+margin_bottom = 963.0
+custom_fonts/font = ExtResource( 4 )
+align = 1
+valign = 1
+
+[node name="HeadMid5" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 936.0
+margin_right = 833.0
+margin_bottom = 963.0
+custom_fonts/font = ExtResource( 4 )
+text = "Colors"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="HeadRight5" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 936.0
+margin_right = 1237.0
+margin_bottom = 963.0
+custom_fonts/font = ExtResource( 4 )
+
+[node name="ColorSetting" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 967.0
+margin_right = 429.0
+margin_bottom = 994.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "deep Sea"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Spacer1" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 973.0
+margin_right = 833.0
+margin_bottom = 987.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker" type="ColorPickerButton" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 967.0
+margin_right = 1237.0
+margin_bottom = 994.0
+edit_alpha = false
+
+[node name="ColorSetting2" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 998.0
+margin_right = 429.0
+margin_bottom = 1025.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Sea"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Spacer2" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 1004.0
+margin_right = 833.0
+margin_bottom = 1018.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker2" type="ColorPickerButton" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 998.0
+margin_right = 1237.0
+margin_bottom = 1025.0
+edit_alpha = false
+
+[node name="ColorSetting3" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 1029.0
+margin_right = 429.0
+margin_bottom = 1056.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Beach"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Spacer3" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 1035.0
+margin_right = 833.0
+margin_bottom = 1049.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker3" type="ColorPickerButton" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 1029.0
+margin_right = 1237.0
+margin_bottom = 1056.0
+edit_alpha = false
+
+[node name="ColorSetting4" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 1060.0
+margin_right = 429.0
+margin_bottom = 1087.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Ice Beach"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Spacer4" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 1066.0
+margin_right = 833.0
+margin_bottom = 1080.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker4" type="ColorPickerButton" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 1060.0
+margin_right = 1237.0
+margin_bottom = 1087.0
+edit_alpha = false
+
+[node name="ColorSetting5" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 1091.0
+margin_right = 429.0
+margin_bottom = 1118.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Land"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Spacer5" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 1097.0
+margin_right = 833.0
+margin_bottom = 1111.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker5" type="ColorPickerButton" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 1091.0
+margin_right = 1237.0
+margin_bottom = 1118.0
+edit_alpha = false
+
+[node name="ColorSetting6" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 1122.0
+margin_right = 429.0
+margin_bottom = 1149.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Desert Land"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Spacer6" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 1128.0
+margin_right = 833.0
+margin_bottom = 1142.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker6" type="ColorPickerButton" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 1122.0
+margin_right = 1237.0
+margin_bottom = 1149.0
+edit_alpha = false
+
+[node name="ColorSetting7" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 1153.0
+margin_right = 429.0
+margin_bottom = 1180.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "ice Land"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Spacer7" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 1159.0
+margin_right = 833.0
+margin_bottom = 1173.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker7" type="ColorPickerButton" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 1153.0
+margin_right = 1237.0
+margin_bottom = 1180.0
+edit_alpha = false
+
+[node name="ColorSetting8" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 1184.0
+margin_right = 429.0
+margin_bottom = 1211.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "mountain Color"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Spacer8" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 1190.0
+margin_right = 833.0
+margin_bottom = 1204.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker8" type="ColorPickerButton" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 1184.0
+margin_right = 1237.0
+margin_bottom = 1211.0
+edit_alpha = false
+
+[node name="ColorSetting9" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 1215.0
+margin_right = 429.0
+margin_bottom = 1242.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "desert Mountain"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Spacer9" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 1221.0
+margin_right = 833.0
+margin_bottom = 1235.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker9" type="ColorPickerButton" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 1215.0
+margin_right = 1237.0
+margin_bottom = 1242.0
+edit_alpha = false
+
+[node name="ColorSetting10" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 1246.0
+margin_right = 429.0
+margin_bottom = 1273.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "ice Mountain "
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Spacer10" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 1252.0
+margin_right = 833.0
+margin_bottom = 1266.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker10" type="ColorPickerButton" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 1246.0
+margin_right = 1237.0
+margin_bottom = 1273.0
+edit_alpha = false
+
+[node name="ColorSetting11" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 1277.0
+margin_right = 429.0
+margin_bottom = 1304.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "snow"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Spacer11" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 1283.0
+margin_right = 833.0
+margin_bottom = 1297.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker11" type="ColorPickerButton" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 1277.0
+margin_right = 1237.0
+margin_bottom = 1304.0
+edit_alpha = false
+
+[node name="ColorSetting12" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_top = 1308.0
+margin_right = 429.0
+margin_bottom = 1335.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "forest"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Spacer12" type="Label" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 433.0
+margin_top = 1314.0
+margin_right = 833.0
+margin_bottom = 1328.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker12" type="ColorPickerButton" parent="UI/SettingsMenu/SettingsMenuContainer/VSplitContainer/ScrollContainer/SettingsSplitter/SettingsContainer"]
+margin_left = 837.0
+margin_top = 1308.0
+margin_right = 1237.0
+margin_bottom = 1335.0
+edit_alpha = false
+
+[node name="FileDialog" type="FileDialog" parent="UI"]
+visible = true
+margin_right = 850.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 400, 140 )
+popup_exclusive = true
+window_title = "Choose Export Location"
+dialog_text = "Please select a location to save your exported map."
+dialog_hide_on_ok = true
+access = 2
+current_dir = "/"
+current_file = "export.png"
+current_path = "/export.png"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FirstRunTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
